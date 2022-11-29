@@ -5,5 +5,5 @@ const users =  new Router()
 
 users.post('/register', UserControllers.register)
 users.post('/login', UserControllers.login)
-
+users.post('/profile', UserControllers.profile)
 export default users

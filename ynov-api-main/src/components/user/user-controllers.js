@@ -33,5 +33,12 @@ export async function register (ctx) {
 
 
 export async function login (ctx) {
+  constlogVAlidation = Joi.object({
+    email:Joi.string().email.required(),
+    password:Joi.string().min(6).required()
+  })
+}
 
+export async function profile (ctx) {
+  
 }
