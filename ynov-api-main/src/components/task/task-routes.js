@@ -1,5 +1,6 @@
 import Router from '@koa/router'
 import * as TaskControllers from '#components/task/task-controllers.js'
+import { isAuthenticated, isAuthenticatedWithUser } from '#middlewares/jwt-handler.js'
 
 const tasks = new Router()
 
