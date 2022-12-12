@@ -1,6 +1,6 @@
 import UserModel from '#components/user/user-model.js'
 import Joi from 'joi'
-import argon2, { hash } from 'argon2'
+import argon2 from 'argon2'
 import { sendWelcomeEmail } from '#services/mailing/welcome-email.js'
 
 export async function register (ctx) {
@@ -33,12 +33,27 @@ export async function register (ctx) {
 
 
 export async function login (ctx) {
-  constlogVAlidation = Joi.object({
-    email:Joi.string().email.required(),
-    password:Joi.string().min(6).required()
-  })
+  try {
+    const param = ctx.request.body;
+    const user = await UserModel.findOne({ email:param.email }).select("password");
+    console.log(param.password);
+    if (!user) {
+      throw new Error('Aucun utilisateur avec cette adresse email n\'a été trouvé');
+    }
+
+    const passwordMatch = await argon2.verify(user.password,param.password);
+
+    if (!passwordMatch) {
+      throw new Error('Le mot de passe est incorrect');
+    }
+    const token = user.generateJWT();
+    ctx.ok({ token })
+      
+  } catch (err) {
+    throw err;
+  }
 }
 
 export async function profile (ctx) {
-  
+  ctx.ok(ctx.state.user);
 }

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "to do list basique",
   "main": "app.js",
-  "author": "matthieu <matthieu.tabarin@gmail.com>",
+  "author": "hugo <hugo.legal.pro@gmail.com>",
   "license": "MIT",
   "type": "module",
   "dependencies": {

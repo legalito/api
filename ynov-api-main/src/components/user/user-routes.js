@@ -1,9 +1,9 @@
 import Router from '@koa/router'
 import * as UserControllers from '#components/user/user-controllers.js'
-
+import {isAuthenticatedWithUser,isAuthenticated}  from '#middlewares/jwt-handler.js'
 const users =  new Router()
 
 users.post('/register', UserControllers.register)
 users.post('/login', UserControllers.login)
-users.post('/profile', UserControllers.profile)
+users.get('/profile',isAuthenticatedWithUser, UserControllers.profile)
 export default users
