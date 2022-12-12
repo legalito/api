@@ -6,6 +6,11 @@ const listSchema = new Schema({
   title: {
     type: String,
     required: true
+  },
+  users: {
+    type: Schema.Types.ObjectId,
+    required: true,
+    ref: 'users'
   }
 }, {
   timestamps: true

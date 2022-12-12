@@ -6,4 +6,5 @@ const users =  new Router()
 users.post('/register', UserControllers.register)
 users.post('/login', UserControllers.login)
 users.get('/profile',isAuthenticatedWithUser, UserControllers.profile)
+
 export default users

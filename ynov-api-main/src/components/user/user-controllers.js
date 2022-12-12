@@ -1,4 +1,5 @@
 import UserModel from '#components/user/user-model.js'
+import ListModel from '#components/list/list-model.js'
 import Joi from 'joi'
 import argon2 from 'argon2'
 import { sendWelcomeEmail } from '#services/mailing/welcome-email.js'
@@ -36,6 +37,7 @@ export async function login (ctx) {
   try {
     const param = ctx.request.body;
     const user = await UserModel.findOne({ email:param.email }).select("password");
+    
     console.log(param.password);
     if (!user) {
       throw new Error('Aucun utilisateur avec cette adresse email n\'a été trouvé');

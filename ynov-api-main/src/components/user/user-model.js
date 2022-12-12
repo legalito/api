@@ -28,6 +28,7 @@ const userSchema = new Schema({
     },
     validation_email_token: String
   }
+  
 }, {
   timestamps: true
 })

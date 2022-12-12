@@ -29,7 +29,8 @@ export async function create (ctx) {
   try {
     const listValidationSchema = Joi.object({
       title: Joi.string().required(),
-      description: Joi.string()
+      description: Joi.string(),
+      users: Joi.string()
     })
     const { error, value } = listValidationSchema.validate(ctx.request.body)
     if(error) throw new Error(error)
