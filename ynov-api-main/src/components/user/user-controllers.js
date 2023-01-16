@@ -52,7 +52,7 @@ export async function login (ctx) {
     ctx.ok({ token })
       
   } catch (err) {
-    throw err;
+    ctx.badRequest(err.message)
   }
 }
 
